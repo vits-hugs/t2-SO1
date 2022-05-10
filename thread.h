@@ -6,7 +6,6 @@
 #include "debug.h"
 
 __BEGIN_API
-
 class Thread
 {
 protected:
@@ -19,6 +18,7 @@ public:
      * Cria o contexto da Thread.
      * PS: devido ao template, este método deve ser implementado neste mesmo arquivo .h
      */ 
+    
     template<typename ... Tn>
     Thread(void (* entry)(Tn ...), Tn ... an);
 
@@ -50,6 +50,9 @@ public:
     /*
      * Qualquer outro método que você achar necessário para a solução.
      */ 
+    Context* context(){
+        return _context;
+    }
 
 private:
     int _id;

@@ -16,7 +16,9 @@ public:
      * Isso evita condições de corrida que podem ocorrer no buffer quando threads são usadas.
      * Deve ser chamado no início da função main.
      */ 
-    static void init();
+    static void init() {
+        setvbuf(stdout,0,_IONBF, 0 );
+    }
 
 };
 
