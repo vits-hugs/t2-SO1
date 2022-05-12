@@ -1,0 +1,410 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Thu May 12 17:04:56 2022
+
+# Variables
+
+# environment
+GDK_BACKEND = x11
+# environment
+LC_ALL = C
+# environment
+NO_AT_BRIDGE = 1
+# environment
+SNAP_INSTANCE_KEY = 
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-3c1e9e62-6d62-4981-ab4e-ae56ed63a48e.sock
+# environment
+LC_NAME = pt_BR.UTF-8
+# environment
+LC_NUMERIC = pt_BR.UTF-8
+# environment
+VSCODE_CWD = /home/vitorh/ufsc/SO1
+# environment
+WINDOWID = 65011715
+# environment
+LC_ADDRESS = pt_BR.UTF-8
+# environment
+GDM_LANG = pt_BR.utf8
+# default
+MAKE_COMMAND := make
+# environment
+GTK3_MODULES = xapp-gtk3-module:xapp-gtk3-module
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+SNAP_INSTANCE_NAME = code
+# environment
+GDK_PIXBUF_MODULEDIR = /snap/code/96/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/vitorh/ufsc/SO1/t2-SO1
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+MAIL = /var/spool/mail/vitorh
+# environment
+XDG_DATA_DIRS = /home/vitorh/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop:/usr/share
+# environment
+OLDPWD = /home/vitorh/ufsc
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/vitorh/.config/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
+# environment
+LANG = C
+# environment
+XAUTHORITY = /home/vitorh/.Xauthority
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# makefile
+ 
+MAKEFLAGS = pqrR
+ 
+# makefile
+CURDIR := /home/vitorh/ufsc/SO1/t2-SO1
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+ 
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXX6rN2Gv/agent.1060
+# default
+.SHELLFLAGS := -c
+# environment
+XDG_CONFIG_DIRS = /etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XDG_SESSION_DESKTOP = xfce
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# environment
+SNAP_REEXEC = 
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 1450
+# environment
+XDG_SESSION_TYPE = x11
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+SESSION_MANAGER = local/note:@/tmp/.ICE-unix/1009,unix/note:/tmp/.ICE-unix/1009
+# automatic
+*F = $(notdir $*)
+# environment
+QT_QPA_PLATFORMTHEME = qt5ct
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+LD_LIBRARY_PATH = :/home/vitorh/.mujoco/mujoco200/bin
+# environment
+SHLVL = 2
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+SNAP_COOKIE = pEPPafk7Xr9ggBv1OON7KesB7F-qVhJszp0-bgWpioq9lMzQLfFl
+# environment
+PATH = /home/vitorh/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+# default
+MAKEFILES := 
+# environment
+LC_MONETARY = pt_BR.UTF-8
+# environment
+MOTD_SHOWN = pam
+# automatic
+^F = $(notdir $^)
+# environment
+SNAP_USER_COMMON = /home/vitorh/snap/code/common
+# environment
+LC_TIME = pt_BR.UTF-8
+# environment
+SNAP = /snap/code/96
+# environment
+SNAP_REVISION = 96
+# environment
+SNAP_REAL_HOME = /home/vitorh
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+LC_TELEPHONE = pt_BR.UTF-8
+# automatic
+?F = $(notdir $?)
+# environment
+XDG_SEAT = seat0
+# environment
+XDG_CURRENT_DESKTOP = XFCE
+# environment
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32:*.log=00;32:*.tex=00;32:*.doc=00;32:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:
+# automatic
+ 
++F = $(notdir $+)
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+DESKTOP_SESSION = xfce
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = XFCE
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = vitorh
+# environment
+SNAP_ARCH = amd64
+# environment
+XDG_VTNR = 7
+# makefile
+.DEFAULT_GOAL := all
+# environment
+EDITOR = /usr/bin/nano
+# environment
+DISPLAY = :0.0
+# environment
+GTK_MODULES = canberra-gtk-module:canberra-gtk-module
+# environment
+USER = vitorh
+# default
+MAKE_VERSION := 4.3
+# environment
+DISABLE_WAYLAND = 1
+# environment
+SNAP_DATA = /var/snap/code/96
+# environment
+SNAP_CONTEXT = pEPPafk7Xr9ggBv1OON7KesB7F-qVhJszp0-bgWpioq9lMzQLfFl
+# environment
+LC_MEASUREMENT = pt_BR.UTF-8
+# environment
+SSH_AGENT_PID = 1061
+# environment
+_ = /usr/bin/make
+# environment
+LC_PAPER = pt_BR.UTF-8
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+COLORTERM = truecolor
+# environment
+GDK_PIXBUF_MODULE_FILE = /home/vitorh/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+GTK2_RC_FILES = /home/vitorh/.gtkrc-2.0
+# environment
+HOME = /home/vitorh
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-88d02e2f-1.67.1-main.sock
+# environment
+TERM = xterm-256color
+# environment
+SNAP_NAME = code
+# environment
+GSETTINGS_SCHEMA_DIR = /snap/code/96/usr/share/glib-2.0/schemas
+# environment
+XDG_SESSION_ID = 2
+# environment
+PANEL_GDK_CORE_DEVICE_EVENTS = 0
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# environment
+SNAP_VERSION = da15b6fd
+# default
+SUFFIXES := 
+# environment
+QT_AUTO_SCREEN_SCALE_FACTOR = 0
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+VTE_VERSION = 6600
+# environment
+SNAP_COMMON = /var/snap/code/common
+# environment
+XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/vitorh
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
+# makefile (from 'Makefile', line 1)
+CC = g++
+# environment
+SNAP_USER_DATA = /home/vitorh/snap/code/96
+# environment
+XDG_MENU_PREFIX = xfce-
+# environment
+GDMSESSION = xfce
+# environment
+LC_IDENTIFICATION = pt_BR.UTF-8
+# environment
+SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
+# variable set hash-table stats:
+# Load=133/1024=13%, Rehash=0, Collisions=8/166=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+ 
+
+# Directories
+
+# . (device 2054, inode 5377442): 19 files, no impossibilities.
+
+# 19 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+cpu.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 19:22:06.74295207
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-12 17:04:23.574047667
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
+#  Command line target.
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := all
+# automatic
+# * := 
+# automatic
+# < := cpu.cc
+# automatic
+# + := cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
+# automatic
+# % := 
+# automatic
+# ^ := cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
+# automatic
+# ? := cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 3):
+	g++ cpu.cc main_class.cc main.cc debug.cc thread.cc system.cc traits.h  -o main
+
+# Not a target:
+main_class.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 19:22:06.756285892
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+main_class.cc:
+ 
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 19:22:06.756285892
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+main.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 19:22:06.756285892
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+traits.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-10 20:29:02.116653423
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+cpu.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-12 16:47:44.3722241
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=10/1024=1%, Rehash=0, Collisions=1/28=4%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 24 / storage = 210 B / avg = 8 B
+# current buf: size = 8162 B / used = 210 B / count = 24 / avg = 8 B
+
+# strcache performance: lookups = 37 / hit rate = 35%
+# hash-table stats:
+# Load=24/8192=0%, Rehash=0, Collisions=0/37=0%
+# Finished Make data base on Thu May 12 17:04:56 2022
+
+ 

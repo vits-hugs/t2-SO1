@@ -1,6 +1,7 @@
 #ifndef thread_h
 #define thread_h
 
+#include <iostream>
 #include "cpu.h"
 #include "traits.h"
 #include "debug.h"
@@ -20,7 +21,9 @@ public:
      */ 
     
     template<typename ... Tn>
-    Thread(void (* entry)(Tn ...), Tn ... an);
+    Thread(void (* entry)(Tn ...), Tn ... an){
+        _context = new Context( entry,an...);
+    }
 
     /*
      * Retorna a Thread que está em execução.
@@ -41,11 +44,17 @@ public:
      * Quando a thread encerra, o controle deve retornar à main. 
      */  
     void thread_exit (int exit_code);
+        /*
+        da um switch com o main
+        e ai retorna ext_code
+        */
+        
+  
 
     /*
      * Retorna o ID da thread.
      */ 
-    int id();
+    int id(){return _id;}
 
     /*
      * Qualquer outro método que você achar necessário para a solução.
