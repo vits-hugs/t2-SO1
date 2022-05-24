@@ -21,13 +21,12 @@ class CPU
 
             template<typename ... Tn>
             Context(void (* func)(Tn ...), Tn ... an) {
-                _stack =new char[sizeof STACK_SIZE];
                 save();
+                _stack =new char[CONTEXT_STACK_SIZE];
                 _context.uc_link = NULL;
                 _context.uc_stack.ss_flags = 0;
-                _context.uc_stack.ss_sp = malloc(CONTEXT_STACK_SIZE);
+                _context.uc_stack.ss_sp = _stack;
                 _context.uc_stack.ss_size = CONTEXT_STACK_SIZE;
-                //std::cout << &_context;
                 makecontext(&_context,(void(*) (void)) func,sizeof...(Tn),an...);
 
 

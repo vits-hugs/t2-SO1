@@ -19,9 +19,10 @@ public:
      * Cria o contexto da Thread.
      * PS: devido ao template, este método deve ser implementado neste mesmo arquivo .h
      */ 
-    
     template<typename ... Tn>
-    Thread(void (* entry)(Tn ...), Tn ... an){
+    Thread(void (* entry)(Tn ...), Tn ... an){ 
+        _id = Thread::thread_counter++;
+        db<Thread>(INF) << "Thread criada com id:"<<_id;
         _context = new Context( entry,an...);
     }
 
@@ -67,6 +68,7 @@ private:
     int _id;
     Context * volatile _context;
     static Thread * _running;
+    static int thread_counter;
 
     /*
      * Qualquer outro atributo que você achar necessário para a solução.
