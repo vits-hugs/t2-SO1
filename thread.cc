@@ -13,7 +13,10 @@ int Thread::switch_context(Thread * prev, Thread * next){
 void Thread::thread_exit(int exit_code){
     db<Thread>(TRC) << "tread finalizou com exit_" << exit_code;
 
-    delete _context;
+    if (_context){
+        delete _context;
+        _id = Thread::thread_counter--;
+    }
     // decrementa contador;  
 }
 
