@@ -29,7 +29,8 @@ public:
     /*
      * Retorna a Thread que está em execução.
      */ 
-    static Thread * running() { return _running; }
+    static Thread * running() {
+        return _running; }
 
     /*
      * Método para trocar o contexto entre duas thread, a anterior (prev)
@@ -54,8 +55,8 @@ public:
 
     /*
      * Retorna o ID da thread.
-     */ 
-    int id(){return _id;}
+     */
+    int id();
 
     /*
      * Qualquer outro método que você achar necessário para a solução.

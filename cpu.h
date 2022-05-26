@@ -22,7 +22,7 @@ class CPU
             template<typename ... Tn>
             Context(void (* func)(Tn ...), Tn ... an) {
                 save();
-                _stack =new char[CONTEXT_STACK_SIZE];
+                _stack = new char[CONTEXT_STACK_SIZE];
                 _context.uc_link = NULL;
                 _context.uc_stack.ss_flags = 0;
                 _context.uc_stack.ss_sp = _stack;
