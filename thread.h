@@ -28,7 +28,7 @@ public:
     /*
      * Construtor vazio. Necessário para inicialização, mas sem importância para a execução das Threads.
      */ 
-    Thread() { }
+    Thread() {}
 
     /*
      * Cria uma Thread passando um ponteiro para a função a ser executada
@@ -102,7 +102,7 @@ private:
     int _id;
     Context * volatile _context;
     static Thread * _running;
-    
+    static unsigned int thread_counter;    
     static Thread _main; 
     static CPU::Context _main_context;
     static Thread _dispatcher;
@@ -117,9 +117,18 @@ private:
 };
 
 template<typename ... Tn>
-inline Thread::Thread(void (* entry)(Tn ...), Tn ... an) //: tem um inicializador/* inicialização de _link */
+inline Thread::Thread(void (* entry)(Tn ...), Tn ... an) :// tem um inicializador/* inicialização de _link */
+    _link(this, (std::chrono::duration_cast<std::chrono::microseconds>
+    (std::chrono::high_resolution_clock::now().time_since_epoch()).count())),
+    _state{READY}
 {
     //IMPLEMENTAÇÃO DO CONSTRUTOR
+    _id = Thread::thread_counter++;
+    db<Thread>(INF) << "Thread criada com id:"<<_id << "\n";
+    _context = new Context( entry,an...);
+    if (_id != 0 && _id!=1){//ignora main e dispatcher.
+        _ready.insert(&_link);
+    }
 }
 
 __END_API

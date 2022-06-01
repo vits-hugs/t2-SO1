@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "traits.h"
+#include "thread.h"
 
 __BEGIN_API
 
@@ -16,7 +17,7 @@ public:
      * Isso evita condições de corrida que podem ocorrer no buffer quando threads são usadas.
      * Deve ser chamado no início da função main.
      */ 
-    static void init();
+    static void init(void (*main)(void*));
 
 };
 

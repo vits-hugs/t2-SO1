@@ -11,6 +11,8 @@ __BEGIN_API
 
 class CPU; //declaração das classes criadas nos trabalhos devem ser colocadas aqui
 class Debug;
+class Lists;
+class Thread;
 //declaração da classe Traits
 template<typename T>
 struct Traits {

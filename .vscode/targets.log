@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 24 19:48:45 2022
+# Make data base, printed on Sat May 28 21:15:17 2022
 
 # Variables
 
@@ -17,9 +17,11 @@ LC_ALL = C
 # environment
 NO_AT_BRIDGE = 1
 # environment
+SDKMAN_PLATFORM = linuxx64
+# environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-06d6fc3d-0d8d-4fe0-af83-41d6618fc558.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-19e921b3-29cf-448e-8169-5b46e08ae3f4.sock
 # environment
 LC_NAME = pt_BR.UTF-8
 # environment
@@ -27,12 +29,11 @@ LC_NUMERIC = pt_BR.UTF-8
 # environment
 VSCODE_CWD = /home/vitorh/ufsc/SO1
 # environment
-WINDOWID = 62914563
+WINDOWID = 67108867
 # environment
 LC_ADDRESS = pt_BR.UTF-8
 # environment
 GDM_LANG = pt_BR.utf8
- 
 # default
 MAKE_COMMAND := make
 # environment
@@ -88,7 +89,7 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-XXXXXXI9xt92/agent.1053
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXXimmfHc/agent.1099
 # default
 .SHELLFLAGS := -c
 # environment
@@ -106,15 +107,19 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 7073
+VSCODE_PID = 23094
+# environment
+SDKMAN_DIR = /home/vitorh/.sdkman
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/note:@/tmp/.ICE-unix/1002,unix/note:/tmp/.ICE-unix/1002
+SESSION_MANAGER = local/note:@/tmp/.ICE-unix/1045,unix/note:/tmp/.ICE-unix/1045
 # automatic
 *F = $(notdir $*)
+# environment
+SDKMAN_VERSION = 5.15.0
 # environment
 QT_QPA_PLATFORMTHEME = qt5ct
 # environment
@@ -142,7 +147,7 @@ MAKE = $(MAKE_COMMAND)
 # environment
 SNAP_COOKIE = pEPPafk7Xr9ggBv1OON7KesB7F-qVhJszp0-bgWpioq9lMzQLfFl
 # environment
-PATH = /home/vitorh/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+PATH = /home/vitorh/.sdkman/candidates/maven/current/bin:/home/vitorh/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
 # default
 MAKEFILES := 
 # environment
@@ -155,6 +160,8 @@ MOTD_SHOWN = pam
 SNAP_USER_COMMON = /home/vitorh/snap/code/common
 # environment
 LC_TIME = pt_BR.UTF-8
+# environment
+SDKMAN_CANDIDATES_DIR = /home/vitorh/.sdkman/candidates
 # environment
 SNAP = /snap/code/97
 # environment
@@ -181,6 +188,8 @@ XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 DESKTOP_SESSION = xfce
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = XFCE
+# environment
+MAVEN_HOME = /home/vitorh/.sdkman/candidates/maven/current
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -210,7 +219,9 @@ SNAP_CONTEXT = pEPPafk7Xr9ggBv1OON7KesB7F-qVhJszp0-bgWpioq9lMzQLfFl
 # environment
 LC_MEASUREMENT = pt_BR.UTF-8
 # environment
-SSH_AGENT_PID = 1054
+DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
+# environment
+SSH_AGENT_PID = 1100
 # environment
 _ = /usr/bin/make
 # environment
@@ -225,6 +236,8 @@ GDK_PIXBUF_MODULE_FILE = /home/vitorh/snap/code/common/.cache/gdk-pixbuf-loaders
 XDG_SESSION_CLASS = user
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+SDKMAN_CANDIDATES_API = https://api.sdkman.io/2
 # environment
 GTK2_RC_FILES = /home/vitorh/.gtkrc-2.0
 # environment
@@ -258,7 +271,7 @@ VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
-VTE_VERSION = 6600
+VTE_VERSION = 6800
 # environment
 SNAP_COMMON = /var/snap/code/common
 # environment
@@ -267,6 +280,7 @@ XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/vitorh
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
 # makefile (from 'Makefile', line 1)
 CC = g++
+ 
 # environment
 SNAP_USER_DATA = /home/vitorh/snap/code/97
 # environment
@@ -278,7 +292,7 @@ LC_IDENTIFICATION = pt_BR.UTF-8
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=133/1024=13%, Rehash=0, Collisions=8/166=5%
+# Load=140/1024=14%, Rehash=0, Collisions=10/173=6%
 
 # Pattern-specific Variable Values
 
@@ -286,9 +300,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2054, inode 5377442): 19 files, no impossibilities.
+# . (device 2054, inode 7342118): 29 files, no impossibilities.
 
-# 19 files, no impossibilities in 1 directories.
+# 29 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -297,86 +311,126 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Files
 
 # Not a target:
-cpu.cc:
+thread.cc:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-17 08:51:51.439105044
+#  Last modified 2022-05-28 21:13:40.32055674
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-Makefile:
+cpu.cc:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-12 17:04:23.574047667
+#  Last modified 2022-05-27 15:42:15.379078064
 #  File has been updated.
 #  Successfully updated.
 
- 
+# Not a target:
+debug.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-28 21:15:06.705089766
+#  File has been updated.
+#  Successfully updated.
+
+debug.o: debug.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 17):
+	g++ -c debug.cc
+
+# Not a target:
+system.cc:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 27):
+	rm *.o output
+
+system.o: system.cc
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 23):
+	g++ -c system.cc
+
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-all: cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
+all: main
 #  Command line target.
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
+#  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
-# automatic
-# @ := all
-# automatic
-# * := 
-# automatic
-# < := cpu.cc
-# automatic
-# + := cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
-# automatic
-# % := 
-# automatic
-# ^ := cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
-# automatic
-# ? := cpu.cc cpu.h main_class.cc main_class.h main.cc traits.h
-# automatic
-# | := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
-#  recipe to execute (from 'Makefile', line 3):
-	g++ cpu.cc main_class.cc main.cc debug.cc thread.cc system.cc traits.h  -o main
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
-# Not a target:
-main_class.h:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-10 19:22:06.756285892
+main_class.o: main_class.cc
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-28 21:01:52.43055752
 #  File has been updated.
 #  Successfully updated.
+#  recipe to execute (from 'Makefile', line 14):
+	g++ -c main_class.cc
+
+cpu.o: cpu.cc
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-28 21:01:51.607212268
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 11):
+	g++ -c cpu.cc
+
+main: main.o cpu.o main_class.o thread.o system.o debug.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-28 21:13:43.743937667
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
+#  recipe to execute (from 'Makefile', line 5):
+	g++ main.o cpu.o main_class.o thread.o system.o debug.o -o main
+
+main.o: main.cc
+#  Implicit rule search has not been done.
+#  Last modified 2022-05-28 21:01:50.973869766
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 8):
+	g++ -c main.cc
 
 # Not a target:
 main_class.cc:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 19:22:06.756285892
+#  Last modified 2022-05-27 15:48:54.356270839
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+thread.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-28 21:14:48.881509109
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 main.cc:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-10 19:22:06.756285892
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-traits.h:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-17 09:22:34.632897632
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-cpu.h:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-17 09:49:52.782121919
+#  Last modified 2022-05-27 15:48:54.356270839
 #  File has been updated.
 #  Successfully updated.
 
@@ -386,20 +440,48 @@ cpu.h:
 #  Modification time never checked.
 #  File has not been updated.
 
+thread.o: thread.cc thread.h
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  Last modified 2022-05-28 21:13:43.593935581
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := thread.o
+# automatic
+# * := 
+# automatic
+# < := thread.cc
+# automatic
+# + := thread.cc thread.h
+# automatic
+# % := 
+# automatic
+# ^ := thread.cc thread.h
+# automatic
+# ? := thread.h
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 20):
+	g++ -c thread.cc
+
 # files hash-table stats:
-# Load=10/1024=1%, Rehash=0, Collisions=1/28=4%
+# Load=19/1024=2%, Rehash=0, Collisions=2/52=4%
 # VPATH Search Paths
+ 
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 210 B / avg = 8 B
-# current buf: size = 8162 B / used = 210 B / count = 24 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 311 B / avg = 8 B
+# current buf: size = 8162 B / used = 311 B / count = 35 / avg = 8 B
 
-# strcache performance: lookups = 37 / hit rate = 35%
+# strcache performance: lookups = 71 / hit rate = 50%
 # hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=0/37=0%
-# Finished Make data base on Tue May 24 19:48:45 2022
+# Load=35/8192=0%, Rehash=0, Collisions=0/71=0%
+# Finished Make data base on Sat May 28 21:15:17 2022
 
  
