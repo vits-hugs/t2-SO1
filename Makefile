@@ -22,8 +22,6 @@ debug.o: debug.cc
 thread.o: thread.cc thread.h
 	g++ -c thread.cc
 
-
-
 clean:
 	rm *.o main
 

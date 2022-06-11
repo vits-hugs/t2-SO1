@@ -8,12 +8,21 @@ CPU::Context Thread::_main_context;
 Thread::Ready_Queue Thread::_ready;
 Thread *Thread::_running = 0;
 
-unsigned int Thread::thread_counter= 0;
+unsigned int Thread::thread_counter;
 int Thread::switch_context(Thread * prev, Thread * next){
     _running = next;
 
-    db<Thread>(TRC) << "Thread: "<< prev->_id << "trocou com "
+    if (prev->_id==1){
+         db<Thread>(TRC) << "Thread "<< "Dispatcher" << " trocou com "
                     << "thread: "<< next->_id << "\n";
+    }
+    else if (next->_id==1)
+    {
+    db<Thread>(TRC) << "Thread: "<< prev->_id << " trocou com "
+                    << "thread "<< "Dispatcher" << "\n";
+
+    }
+    
     if (prev != next){
         prev->_state = READY;
         CPU::switch_context(prev->context(),next->context());
@@ -23,9 +32,13 @@ int Thread::switch_context(Thread * prev, Thread * next){
 
 void Thread::thread_exit(int exit_code){
     this->_state = FINISHING;
-    db<Thread>(TRC) << "tread finalizou com exit_" << exit_code << "\n";
+    db<Thread>(TRC) << "thread: "<<this->_id << " FINALIZADA com exit_" << exit_code << "\n";
 
-    // decrementa contador;  
+    // decrementa contador; 
+
+    thread_counter--; 
+    //printf("thread %d exitando | counter = %d\n",this->_id,thread_counter);
+
     Thread::yield();
 }
 int Thread::id(){
@@ -34,41 +47,47 @@ int Thread::id(){
 }
 
 Thread::~Thread(){
-    db<Thread>(INF) << "Thread "<< _id << " sendo destruida\n";
+    db<Thread>(TRC) << "Thread "<< _id << " sendo destruida\n";
     delete _context;
-    if (_id!= 0){
 
-        _ready.remove(this);
-    }
+        
+    _ready.remove(this);
+    
     thread_exit(0);
 }
 // STATIC FUNCTIONS
 
 
 void Thread::dispatcher() {
-    db<Thread>(TRC) << "dispatcher dispatchando\n";
-    //Equanto houver mais de 2 threads, pois tem a main e a disaptcher
-    /*
-    while (!_ready.empty()) {
+     while (thread_counter > 2) {
     //escolha a próxima
     
     auto ponteiro = _ready.head();
     Thread * next = ponteiro->object();
-    //
+    
    _dispatcher._state = READY;
+
+    int now = (std::chrono::duration_cast<std::chrono::microseconds>
+    (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+   _ready.remove(&_dispatcher);
+   _dispatcher._link.rank(now);
    _ready.insert(&_dispatcher._link);
    _running = next;
-   _running->_state = RUNNING;
-   Thread::switch_context(&_dispatcher,_running);
+   next->_state = RUNNING;
+   Thread::switch_context(&_dispatcher,next);
     if (_ready.head()->object()->_state == FINISHING) {
         _ready.remove_head();
     }
+
     }
    
+    printf("Dispatcher sendo finalizada e indo pro main");
+    db<Thread>(TRC) << "Dispatcher sendo finalizada e indo pro main";
     _dispatcher._state = FINISHING;
     _ready.remove(&_dispatcher._link);
-    //Thread::switch_context(&_dispatcher,&_main);
-    */
+    Thread::switch_context(&_dispatcher,&_main);
+
+    
 }
 // cria main e dispatcher
 void Thread::init(void (*main)(void *)){
@@ -96,7 +115,7 @@ void Thread::yield(){
     Thread * prev = running();
     Thread * next = _ready.remove()->object();
     
-    if (prev != &_main && prev != &_dispatcher && _running->_state != FINISHING ){
+    if (prev != &_main && prev != &_dispatcher && prev->_state != FINISHING ){
         db<Thread>(TRC) << "atualizando e adicionando na fila\n";
         prev->_state = READY;
         int now = (std::chrono::duration_cast<std::chrono::microseconds>
@@ -104,7 +123,7 @@ void Thread::yield(){
         prev->_link.rank(now);
     }
     
-    if( prev != &_main){
+    if( prev != &_main ){
         _ready.insert(&prev->_link);
     }
 
