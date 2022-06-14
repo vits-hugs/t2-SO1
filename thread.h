@@ -123,9 +123,9 @@ inline Thread::Thread(void (* entry)(Tn ...), Tn ... an) :// tem um inicializado
     _state{READY}
 {
     //IMPLEMENTAÇÃO DO CONSTRUTOR
+    _context = new Context( entry,an...);
     _id = Thread::thread_counter++;
     db<Thread>(INF) << "Thread criada com id:"<<_id << "\n";
-    _context = new Context( entry,an...);
     if (_id != 0 && _id!=1){//ignora main e dispatcher.
         _ready.insert(&_link);
     }
