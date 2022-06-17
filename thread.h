@@ -22,6 +22,7 @@ public:
     enum State {
         RUNNING,
         READY,
+        SUSPENDED,
         FINISHING
     };
 
@@ -91,9 +92,18 @@ public:
      */ 
     ~Thread();
 
+
     /*
      * Qualquer outro método que você achar necessário para a solução.
      */ 
+
+    int join();
+
+    void suspend();
+
+    void resume();
+
+
     Context* context(){
         return _context;
     }
@@ -102,14 +112,16 @@ private:
     int _id;
     Context * volatile _context;
     static Thread * _running;
+    static Thread * _joining;
     static unsigned int thread_counter;    
     static Thread _main; 
     static CPU::Context _main_context;
     static Thread _dispatcher;
     static Ready_Queue _ready;
+    static Ready_Queue _suspend; 
     Ready_Queue::Element _link;
     volatile State _state;
-
+    int exit_code{0};
     /*
      * Qualquer outro atributo que você achar necessário para a solução.
      */ 

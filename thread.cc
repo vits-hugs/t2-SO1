@@ -6,7 +6,9 @@ Thread Thread::_main;
 Thread Thread::_dispatcher;
 CPU::Context Thread::_main_context;
 Thread::Ready_Queue Thread::_ready;
+Thread::Ready_Queue Thread::_suspend;
 Thread *Thread::_running;
+Thread *Thread::_joining = 0;
 
 unsigned int Thread::thread_counter;
 int Thread::switch_context(Thread * prev, Thread * next){
@@ -34,6 +36,7 @@ void Thread::thread_exit(int exit_code){
     db<Thread>(TRC) << "thread: "<<this->_id << " FINALIZADA com exit_" << exit_code << "\n";
 
     // decrementa contador; 
+    thread_counter--;
     //printf("thread %d exitando | counter = %d\n",this->_id,thread_counter);
 
     Thread::yield();
@@ -45,7 +48,6 @@ int Thread::id(){
 
 Thread::~Thread(){
     db<Thread>(TRC) << "Thread "<< _id << " sendo destruida\n";
-        
     _ready.remove(this);
     delete _context;
 
@@ -54,18 +56,17 @@ Thread::~Thread(){
 
 
 void Thread::dispatcher() {
-     while (_ready.size() > 2) {
+     while (_ready.size() > 0) {
     //escolha a próxima
     
-    auto ponteiro = _ready.head();
     Thread * next = _ready.remove()->object();
     
    _dispatcher._state = READY;
 
-    int now = (std::chrono::duration_cast<std::chrono::microseconds>
-    (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+   // int now = (std::chrono::duration_cast<std::chrono::microseconds>
+   // (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
 
-   _dispatcher._link.rank(now);
+   //_dispatcher._link.rank(now);
    _ready.insert(&_dispatcher._link);
    _running = next;
    next->_state = RUNNING;
@@ -125,5 +126,32 @@ void Thread::yield(){
     
 }
 
+void Thread::suspend() {
+    std::cout << this->_id << "\n";
+    std::cout << "cu";
+    this->_state = SUSPENDED;
+    if (this != &_main){
+        _ready.remove(&this->_link);
+    }
+    _suspend.insert(&this->_link);
+    yield();
+}
 
+int Thread::join() {
+    std::cout << "joinei";
+    if (this->_state != FINISHING){
+        _running->suspend();
+    }
+    return _running->exit_code++;
+    
+}
+
+void Thread::resume() {
+   
+    if (this->_state == SUSPENDED){
+    this->_state = READY;
+    _suspend.remove(&this->_link);
+    _ready.insert(&this->_link);
+    }
+}
 __END_API

@@ -16,7 +16,7 @@ class Thread;
 //declaração da classe Traits
 template<typename T>
 struct Traits {
-    static const bool debugged = false;
+    static const bool debugged = true;
 };
 
 
