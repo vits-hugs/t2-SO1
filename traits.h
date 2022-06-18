@@ -16,7 +16,7 @@ class Thread;
 //declaração da classe Traits
 template<typename T>
 struct Traits {
-    static const bool debugged = true;
+    static const bool debugged = false;
 };
 
 
@@ -32,6 +32,14 @@ template<> struct Traits<Debug>: public Traits<void>
     static const bool warning = false;
     static const bool info    = true;
     static const bool trace   = true;
+};
+
+template<> struct Traits<Thread> : public Traits<void> {
+    static const bool debugged = false;
+};
+
+template<> struct Traits<Lists> : public Traits<void> {
+    static const bool debugged = false;
 };
 __END_API
 

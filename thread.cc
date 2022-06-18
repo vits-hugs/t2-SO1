@@ -33,12 +33,11 @@ int Thread::switch_context(Thread * prev, Thread * next){
 
 void Thread::thread_exit(int exit_code){
     this->_state = FINISHING;
-    db<Thread>(TRC) << "thread: "<<this->_id << " FINALIZADA com exit_" << exit_code << "\n";
+    db<Thread>(TRC) << "thread: "<<this->_id << "chamou exit()\n";
 
-    // decrementa contador; 
     thread_counter--;
-    //printf("thread %d exitando | counter = %d\n",this->_id,thread_counter);
-
+    if (!_suspend.empty()) _suspend.head()->object()->resume();
+    
     Thread::yield();
 }
 int Thread::id(){
@@ -56,24 +55,23 @@ Thread::~Thread(){
 
 
 void Thread::dispatcher() {
-     while (_ready.size() > 0) {
+    while (_ready.size() > 2) {
     //escolha a próxima
     
     Thread * next = _ready.remove()->object();
     
    _dispatcher._state = READY;
 
-   // int now = (std::chrono::duration_cast<std::chrono::microseconds>
-   // (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+   int now = (std::chrono::duration_cast<std::chrono::microseconds>
+   (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
 
-   //_dispatcher._link.rank(now);
+   _dispatcher._link.rank(now);
    _ready.insert(&_dispatcher._link);
    _running = next;
    next->_state = RUNNING;
    Thread::switch_context(&_dispatcher,next);
 
     }
-
 
     db<Thread>(TRC) << "Dispatcher sendo finalizada e indo pro main";
     _dispatcher._state = FINISHING;
@@ -84,7 +82,7 @@ void Thread::dispatcher() {
 }
 // cria main e dispatcher
 void Thread::init(void (*main)(void *)){
-    
+    db<Thread>(TRC) << "inicializando main e dispatcher\n";
     new (&_main) Thread(main,(void*) "main");
 
     new (&_dispatcher) Thread((void(*)(void*)) &Thread::dispatcher,(void *)NULL);
@@ -127,8 +125,7 @@ void Thread::yield(){
 }
 
 void Thread::suspend() {
-    std::cout << this->_id << "\n";
-    std::cout << "cu";
+    db<Thread>(TRC) << "Thread: " << this->_id << "entrando na fila de suspensos\n";
     this->_state = SUSPENDED;
     if (this != &_main){
         _ready.remove(&this->_link);
@@ -138,7 +135,7 @@ void Thread::suspend() {
 }
 
 int Thread::join() {
-    std::cout << "joinei";
+    db<Thread>(TRC) << "Thread: " << this->_id << " chamou join\n";
     if (this->_state != FINISHING){
         _running->suspend();
     }
@@ -147,11 +144,12 @@ int Thread::join() {
 }
 
 void Thread::resume() {
-   
+    db<Thread>(TRC) << "Thread: " << this->_id << "saindo da fila de suspensos\n";
     if (this->_state == SUSPENDED){
     this->_state = READY;
     _suspend.remove(&this->_link);
     _ready.insert(&this->_link);
     }
+    db<Thread>(WRN) << "Não há threads na fila de suspensos\n";
 }
 __END_API
