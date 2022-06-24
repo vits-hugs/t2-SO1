@@ -1,11 +1,5 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/vitorh/ufsc/SO1/t2-SO1'
-g++ -c main.cc
-g++ -c cpu.cc
-g++ -c main_class.cc
-g++ -c thread.cc
-g++ -c system.cc
-g++ -c debug.cc
-g++ main.o cpu.o main_class.o thread.o system.o debug.o -o main
+g++ main.o cpu.o main_class.o thread.o system.o debug.o semaphore.o -o main
 make: Leaving directory '/home/vitorh/ufsc/SO1/t2-SO1'
  

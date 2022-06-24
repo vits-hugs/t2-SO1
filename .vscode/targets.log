@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 24 20:12:24 2022
+# Make data base, printed on Fri Jun 24 20:21:01 2022
 
 # Variables
 
@@ -278,13 +278,13 @@ SNAP_COMMON = /var/snap/code/common
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/vitorh
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
+ 
 # makefile (from 'Makefile', line 1)
 CC = g++
 # environment
 SNAP_USER_DATA = /home/vitorh/snap/code/99
 # environment
 XDG_MENU_PREFIX = xfce-
- 
 # environment
 GDMSESSION = xfce
 # environment
@@ -292,7 +292,7 @@ LC_IDENTIFICATION = pt_BR.UTF-8
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=140/1024=14%, Rehash=0, Collisions=10/170=6%
+# Load=140/1024=14%, Rehash=0, Collisions=10/173=6%
 
 # Pattern-specific Variable Values
 
@@ -300,9 +300,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2054, inode 7342118): 26 files, no impossibilities.
+# . (device 2054, inode 7342118): 28 files, no impossibilities.
 
-# 26 files, no impossibilities in 1 directories.
+# 28 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -313,7 +313,7 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 thread.cc:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-17 22:51:40.711621818
+#  Last modified 2022-06-24 20:13:15.521592721
 #  File has been updated.
 #  Successfully updated.
 
@@ -334,13 +334,13 @@ debug.cc:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-02 21:29:20.001226672
+#  Last modified 2022-06-24 20:20:39.880425291
 #  File has been updated.
 #  Successfully updated.
 
 debug.o: debug.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-17 22:57:19.968639017
+#  Last modified 2022-06-24 20:20:46.667177478
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 20):
@@ -357,17 +357,32 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 26):
+#  recipe to execute (from 'Makefile', line 29):
 	rm *.o main
+
+semaphore.o: semaphore.cc semaphore.h
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-24 20:20:47.443853934
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 26):
+	g++ -c semaphore.cc
 
 system.o: system.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-17 22:57:19.421965952
+#  Last modified 2022-06-24 20:20:46.020502661
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 11):
 	g++ -c system.cc
 	
+
+# Not a target:
+semaphore.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-24 20:17:40.508178785
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -380,11 +395,13 @@ all: main
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
 main_class.o: main_class.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-17 22:57:17.545277324
+#  Last modified 2022-06-24 20:20:44.340481489
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 17):
@@ -392,23 +409,42 @@ main_class.o: main_class.cc
 
 cpu.o: cpu.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-17 22:57:16.161927811
+#  Last modified 2022-06-24 20:20:43.570471785
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 14):
 	g++ -c cpu.cc
 
-main: main.o cpu.o main_class.o thread.o system.o debug.o
+main: main.o cpu.o main_class.o thread.o system.o debug.o semaphore.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-17 22:57:20.405310798
+#  Implicit/static pattern stem: ''
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := main
+# automatic
+# * := 
+# automatic
+# < := main.o
+# automatic
+# + := main.o cpu.o main_class.o thread.o system.o debug.o semaphore.o
+# automatic
+# % := 
+# automatic
+# ^ := main.o cpu.o main_class.o thread.o system.o debug.o semaphore.o
+# automatic
+# ? := main.o cpu.o main_class.o thread.o system.o debug.o semaphore.o
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
 #  recipe to execute (from 'Makefile', line 5):
-	g++ main.o cpu.o main_class.o thread.o system.o debug.o -o main
+	g++ main.o cpu.o main_class.o thread.o system.o debug.o semaphore.o -o main
 
 main.o: main.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-17 22:57:15.245250428
+#  Last modified 2022-06-24 20:20:42.88046309
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 8):
@@ -417,7 +453,7 @@ main.o: main.cc
 # Not a target:
 main_class.cc:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-27 15:48:54.356270839
+#  Last modified 2022-06-24 20:17:40.418177665
 #  File has been updated.
 #  Successfully updated.
 
@@ -435,28 +471,41 @@ main.cc:
 #  File has been updated.
 #  Successfully updated.
 
+# Not a target:
+semaphore.cc:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-24 20:18:52.945749243
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 thread.o: thread.cc thread.h
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-17 22:57:18.645290194
+#  Last modified 2022-06-24 20:20:45.250492957
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 23):
 	g++ -c thread.cc
 
 # files hash-table stats:
-# Load=19/1024=2%, Rehash=0, Collisions=2/51=4%
+# Load=22/1024=2%, Rehash=0, Collisions=2/59=3%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 32 / storage = 275 B / avg = 8 B
-# current buf: size = 8162 B / used = 275 B / count = 32 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 312 B / avg = 8 B
+# current buf: size = 8162 B / used = 312 B / count = 35 / avg = 8 B
 
-# strcache performance: lookups = 67 / hit rate = 52%
+# strcache performance: lookups = 75 / hit rate = 53%
 # hash-table stats:
-# Load=32/8192=0%, Rehash=0, Collisions=0/67=0%
-# Finished Make data base on Fri Jun 24 20:12:24 2022
+# Load=35/8192=0%, Rehash=0, Collisions=0/75=0%
+# Finished Make data base on Fri Jun 24 20:21:01 2022
 
  

@@ -13,6 +13,7 @@ class CPU; //declaração das classes criadas nos trabalhos devem ser colocadas 
 class Debug;
 class Lists;
 class Thread;
+class Semaphore;
 //declaração da classe Traits
 template<typename T>
 struct Traits {
@@ -41,6 +42,12 @@ template<> struct Traits<Thread> : public Traits<void> {
 template<> struct Traits<Lists> : public Traits<void> {
     static const bool debugged = false;
 };
+
+template<> struct Traits<Semaphore> : public Traits<void> {
+    static const bool debugged = false;
+};
+
+
 __END_API
 
 #endif

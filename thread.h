@@ -23,6 +23,7 @@ public:
         RUNNING,
         READY,
         SUSPENDED,
+        WAITING,
         FINISHING
     };
 
