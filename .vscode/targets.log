@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun  3 17:11:12 2022
+# Make data base, printed on Fri Jun 24 20:12:24 2022
 
 # Variables
 
@@ -21,15 +21,15 @@ SDKMAN_PLATFORM = linuxx64
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-f0514064-d769-4921-884e-e040008e6071.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6461933c-a930-495a-b342-7a3dbf33a440.sock
 # environment
 LC_NAME = pt_BR.UTF-8
 # environment
 LC_NUMERIC = pt_BR.UTF-8
 # environment
-VSCODE_CWD = /home/vitorh/ufsc/SO1
+VSCODE_CWD = /home/vitorh/ufsc/SO1/t2-SO1
 # environment
-WINDOWID = 58720259
+WINDOWID = 65011715
 # environment
 LC_ADDRESS = pt_BR.UTF-8
 # environment
@@ -43,7 +43,7 @@ GTK3_MODULES = xapp-gtk3-module:xapp-gtk3-module
 # environment
 SNAP_INSTANCE_NAME = code
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/99/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -57,7 +57,7 @@ MAIL = /var/spool/mail/vitorh
 # environment
 XDG_DATA_DIRS = /home/vitorh/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop:/usr/share
 # environment
-OLDPWD = /home/vitorh/ufsc
+OLDPWD = /home/vitorh/ufsc/SO1
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
@@ -65,7 +65,7 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/vitorh/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = /home/vitorh/.config/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
 # environment
 XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
 # environment
@@ -89,7 +89,7 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-XXXXXX6Dz2uW/agent.1086
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXXP0CGSE/agent.1095
 # default
 .SHELLFLAGS := -c
 # environment
@@ -107,7 +107,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1578
+VSCODE_PID = 4780
 # environment
 SDKMAN_DIR = /home/vitorh/.sdkman
 # environment
@@ -115,7 +115,7 @@ XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/note:@/tmp/.ICE-unix/1032,unix/note:/tmp/.ICE-unix/1032
+SESSION_MANAGER = local/note:@/tmp/.ICE-unix/1041,unix/note:/tmp/.ICE-unix/1041
 # automatic
 *F = $(notdir $*)
 # environment
@@ -163,9 +163,9 @@ LC_TIME = pt_BR.UTF-8
 # environment
 SDKMAN_CANDIDATES_DIR = /home/vitorh/.sdkman/candidates
 # environment
-SNAP = /snap/code/97
+SNAP = /snap/code/99
 # environment
-SNAP_REVISION = 97
+SNAP_REVISION = 99
 # environment
 SNAP_REAL_HOME = /home/vitorh
 # environment
@@ -213,7 +213,7 @@ MAKE_VERSION := 4.3
 # environment
 DISABLE_WAYLAND = 1
 # environment
-SNAP_DATA = /var/snap/code/97
+SNAP_DATA = /var/snap/code/99
 # environment
 SNAP_CONTEXT = pEPPafk7Xr9ggBv1OON7KesB7F-qVhJszp0-bgWpioq9lMzQLfFl
 # environment
@@ -221,7 +221,7 @@ LC_MEASUREMENT = pt_BR.UTF-8
 # environment
 DEBUGINFOD_URLS = https://debuginfod.archlinux.org 
 # environment
-SSH_AGENT_PID = 1087
+SSH_AGENT_PID = 1096
 # environment
 _ = /usr/bin/make
 # environment
@@ -245,13 +245,13 @@ HOME = /home/vitorh
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-88d02e2f-1.67.2-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-88d02e2f-1.68.1-main.sock
 # environment
 TERM = xterm-256color
 # environment
 SNAP_NAME = code
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/97/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/99/usr/share/glib-2.0/schemas
 # environment
 XDG_SESSION_ID = 2
 # environment
@@ -261,7 +261,7 @@ PANEL_GDK_CORE_DEVICE_EVENTS = 0
 # automatic
 <F = $(notdir $<)
 # environment
-SNAP_VERSION = c3511e6c
+SNAP_VERSION = 30d9c6cd
 # default
 SUFFIXES := 
 # environment
@@ -281,12 +281,12 @@ XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/vitorh
 # makefile (from 'Makefile', line 1)
 CC = g++
 # environment
-SNAP_USER_DATA = /home/vitorh/snap/code/97
+SNAP_USER_DATA = /home/vitorh/snap/code/99
 # environment
 XDG_MENU_PREFIX = xfce-
+ 
 # environment
 GDMSESSION = xfce
- 
 # environment
 LC_IDENTIFICATION = pt_BR.UTF-8
 # environment
@@ -300,9 +300,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2054, inode 7342118): 30 files, no impossibilities.
+# . (device 2054, inode 7342118): 26 files, no impossibilities.
 
-# 30 files, no impossibilities in 1 directories.
+# 26 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -313,7 +313,7 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 thread.cc:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-02 22:34:45.443869931
+#  Last modified 2022-06-17 22:51:40.711621818
 #  File has been updated.
 #  Successfully updated.
 
@@ -340,7 +340,7 @@ Makefile:
 
 debug.o: debug.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-02 22:16:11.962174941
+#  Last modified 2022-06-17 22:57:19.968639017
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 20):
@@ -362,7 +362,7 @@ clean:
 
 system.o: system.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-02 22:16:11.332166347
+#  Last modified 2022-06-17 22:57:19.421965952
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 11):
@@ -384,7 +384,7 @@ all: main
 
 main_class.o: main_class.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-02 22:16:09.675477079
+#  Last modified 2022-06-17 22:57:17.545277324
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 17):
@@ -392,7 +392,7 @@ main_class.o: main_class.cc
 
 cpu.o: cpu.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-02 22:16:08.908799952
+#  Last modified 2022-06-17 22:57:16.161927811
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 14):
@@ -400,7 +400,7 @@ cpu.o: cpu.cc
 
 main: main.o cpu.o main_class.o thread.o system.o debug.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-02 22:34:48.503818489
+#  Last modified 2022-06-17 22:57:20.405310798
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 5):
@@ -408,7 +408,7 @@ main: main.o cpu.o main_class.o thread.o system.o debug.o
 
 main.o: main.cc
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-02 22:16:08.242124189
+#  Last modified 2022-06-17 22:57:15.245250428
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 8):
@@ -424,7 +424,7 @@ main_class.cc:
 # Not a target:
 thread.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-31 09:03:09.552868029
+#  Last modified 2022-06-17 15:04:45.49251795
 #  File has been updated.
 #  Successfully updated.
 
@@ -437,7 +437,7 @@ main.cc:
 
 thread.o: thread.cc thread.h
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-02 22:34:48.387153775
+#  Last modified 2022-06-17 22:57:18.645290194
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 23):
@@ -451,12 +451,12 @@ thread.o: thread.cc thread.h
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 36 / storage = 323 B / avg = 8 B
-# current buf: size = 8162 B / used = 323 B / count = 36 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 32 / storage = 275 B / avg = 8 B
+# current buf: size = 8162 B / used = 275 B / count = 32 / avg = 8 B
 
-# strcache performance: lookups = 71 / hit rate = 49%
+# strcache performance: lookups = 67 / hit rate = 52%
 # hash-table stats:
-# Load=36/8192=0%, Rehash=0, Collisions=0/71=0%
-# Finished Make data base on Fri Jun  3 17:11:12 2022
+# Load=32/8192=0%, Rehash=0, Collisions=0/67=0%
+# Finished Make data base on Fri Jun 24 20:12:24 2022
 
  

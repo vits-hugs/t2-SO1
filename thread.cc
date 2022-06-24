@@ -35,7 +35,6 @@ void Thread::thread_exit(int exit_code){
     this->_state = FINISHING;
     db<Thread>(TRC) << "thread: "<<this->_id << "chamou exit()\n";
 
-    thread_counter--;
     if (!_suspend.empty()) _suspend.head()->object()->resume();
     
     Thread::yield();
@@ -47,6 +46,7 @@ int Thread::id(){
 
 Thread::~Thread(){
     db<Thread>(TRC) << "Thread "<< _id << " sendo destruida\n";
+    thread_counter--;
     _ready.remove(this);
     delete _context;
 
@@ -131,7 +131,9 @@ void Thread::suspend() {
         _ready.remove(&this->_link);
     }
     _suspend.insert(&this->_link);
-    yield();
+    if (_running == this){
+        yield();
+    }
 }
 
 int Thread::join() {
