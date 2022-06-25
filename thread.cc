@@ -154,4 +154,31 @@ void Thread::resume() {
     }
     db<Thread>(WRN) << "Não há threads na fila de suspensos\n";
 }
+
+// SEM FUNCTIONS
+
+// talvez passar ponteiro para semaforo para ficar na fila dele
+// Fila de wait é global ou é própria do semaforo
+void Thread::wait() {
+    this->_state = WAITING;
+    if (this != &_main){
+        _ready.remove(&this->_link);
+    }
+    //int now = negócio do tempo
+    // _wait_queue.insert(&this->_link,now);
+    if (_running == this){
+        yield();
+    }
+}
+
+void Thread::wake() {
+    db<Thread>(TRC) << "Thread: " << this->_id << "wake\n";
+    if (this->_state == WAITING){
+    this->_state = READY;
+    // _wait_queue.remove(&this->_link);
+    _ready.insert(&this->_link);
+    }
+    db<Thread>(WRN) << "Não há threads na fila de suspensos\n";
+
+}
 __END_API

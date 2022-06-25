@@ -104,6 +104,10 @@ public:
 
     void resume();
 
+    void wait();
+
+    void wake();
+
 
     Context* context(){
         return _context;
