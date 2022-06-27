@@ -11,7 +11,7 @@ __BEGIN_API
 class Semaphore
 {
 public:
-    Semaphore(int v = 1);
+    Semaphore(int _v = 1);
     ~Semaphore();
 
     void p();
@@ -29,7 +29,7 @@ private:
 private:
     //DECLARAÇÃO DOS ATRIBUTOS DO SEMÁFORO
     //adicionar fila de threads  
-    int _v;
+    int _v{1};
 };
 
 __END_API

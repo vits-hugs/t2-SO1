@@ -1,9 +1,10 @@
 #include "semaphore.h"
 
 __BEGIN_API 
-Semaphore::Semaphore(int) {
+Semaphore::Semaphore(int d) {
     db<Semaphore>(TRC) << "Semaforo criado \n";
-
+    _v = d;
+    db<Semaphore>(TRC) <<"atribute v: "<< _v << "\n"; 
 }
 
 Semaphore::~Semaphore() {
@@ -13,26 +14,24 @@ Semaphore::~Semaphore() {
 // Implementar como se fosse um mutex primeiro
 
 void Semaphore::p() {
-    db<Semaphore>(TRC) << "mimir \n";
-    /*
+     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n"; 
+    db<Semaphore>(TRC) << "1: p -> v : " << _v << "\n"; 
     if (_v == 0) {
+        db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " a mimir \n";
 
-        _running.sleep();
-        
+        Thread::sleep();
     }
-    */
     fdec(_v);
-    printf("%d",_v);
+    db<Semaphore>(TRC) << "2: p -> v : " << _v << "\n"; 
 
-    printf("Sleep \n");
 }
 
 void Semaphore::v() {
-    db<Semaphore>(TRC) << "acorda \n";
-    printf("Acorda \n");
+    
     finc(_v);
-    printf("%d",_v);
-    // pega primeira da fila do waiting e acorda
+    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " a mimir \n";
+    Thread::wake();
+    db<Semaphore>(TRC) << "v -> v : " << _v << "\n"; 
 }
 
 // Funções pra threads
@@ -43,7 +42,7 @@ void Semaphore::sleep() {
 
 // chama wake da thread atual
 void Semaphore::wakeup() {
-
+  
 }
 
 //acho que é no caso de destruir o semaforo
