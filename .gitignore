@@ -32,3 +32,4 @@
 *.app
 .vscode/targets.log
 main
+.vscode/configurationCache.log

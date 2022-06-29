@@ -124,7 +124,6 @@ private:
     static Thread _dispatcher;
     static Ready_Queue _ready;
     static Ready_Queue _suspend; 
-    static Ready_Queue _wait_queue;
     Ready_Queue::Element _link;
     volatile State _state;
     int exit_code{0};

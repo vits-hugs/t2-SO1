@@ -14,24 +14,21 @@ Semaphore::~Semaphore() {
 // Implementar como se fosse um mutex primeiro
 
 void Semaphore::p() {
-     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n"; 
-    db<Semaphore>(TRC) << "1: p -> v : " << _v << "\n"; 
-    if (_v == 0) {
-        db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " a mimir \n";
-
+    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n"; 
+    while (_v == 0) {
         Thread::sleep();
+        Thread::yield();
     }
     fdec(_v);
-    db<Semaphore>(TRC) << "2: p -> v : " << _v << "\n"; 
+    db<Semaphore>(TRC) << "p -> _v = " << _v << "\n"; 
 
 }
 
 void Semaphore::v() {
-    
     finc(_v);
-    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " a mimir \n";
+    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " .v() \n";
     Thread::wake();
-    db<Semaphore>(TRC) << "v -> v : " << _v << "\n"; 
+    db<Semaphore>(TRC) << "v -> _v = " << _v << "\n"; 
 }
 
 // Funções pra threads

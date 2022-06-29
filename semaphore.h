@@ -5,12 +5,14 @@
 #include "thread.h"
 #include "traits.h"
 #include "debug.h"
+#include "list.h"
 
 __BEGIN_API
 
 class Semaphore
 {
 public:
+    typedef Ordered_List<Thread> Ready_Queue;
     Semaphore(int _v = 1);
     ~Semaphore();
 
@@ -30,6 +32,7 @@ private:
     //DECLARAÇÃO DOS ATRIBUTOS DO SEMÁFORO
     //adicionar fila de threads  
     int _v{1};
+    Ready_Queue _wait_queue;
 };
 
 __END_API

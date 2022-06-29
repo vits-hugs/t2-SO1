@@ -7,7 +7,6 @@ Thread Thread::_dispatcher;
 CPU::Context Thread::_main_context;
 Thread::Ready_Queue Thread::_ready;
 Thread::Ready_Queue Thread::_suspend;
-Thread::Ready_Queue Thread::_wait_queue;
 Thread *Thread::_running;
 Thread *Thread::_joining = 0;
 
@@ -116,7 +115,7 @@ void Thread::yield(){
         prev->_state = READY;
         _ready.insert(&prev->_link);
     }
-    db<Semaphore>(TRC) << "rodando: " << prev->_state << "\n";
+    //db<Semaphore>(TRC) << "rodando: " << prev->_state << "\n";
     _running = next;
 
     next->_state = RUNNING;
@@ -151,7 +150,9 @@ void Thread::resume() {
     if (this->_state == SUSPENDED){
     this->_state = READY;
     _suspend.remove(&this->_link);
+    
     _ready.insert(&this->_link);
+    
     }
     db<Thread>(WRN) << "Não há threads na fila de suspensos\n";
 }
@@ -161,6 +162,7 @@ void Thread::resume() {
 // talvez passar ponteiro para semaforo para ficar na fila dele
 // Fila de wait é global ou é própria do semaforo
 void Thread::sleep() {
+    /*
     if (_running != &_main){
         _running->_state = WAITING;
         _ready.remove(&_running->_link);
@@ -170,11 +172,11 @@ void Thread::sleep() {
     _wait_queue.insert(&_running->_link);
     }
     if (_running->_state == WAITING) yield();
-    
+    */
 }
 
 void Thread::wake() {
-    db<Semaphore>(TRC) << "wake\n";
+    /*db<Semaphore>(TRC) << "wake\n";
     Thread * to_wake = Thread::_wait_queue.remove()->object();
     db<Thread>(TRC) << "Thread: " << to_wake->_id << "wake\n";
     if (to_wake->_state == WAITING){
@@ -183,6 +185,7 @@ void Thread::wake() {
     _ready.insert(&to_wake->_link);
     }
     db<Thread>(WRN) << "Não há threads na fila de suspensos\n";
+    */
 
 }
 __END_API
