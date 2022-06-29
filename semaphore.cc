@@ -16,7 +16,8 @@ Semaphore::~Semaphore() {
 void Semaphore::p() {
     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n"; 
     while (_v == 0) {
-        Thread::sleep();
+        db<Semaphore>(TRC) << "sleepo" << _v << "\n"; 
+        sleep();
         Thread::yield();
     }
     fdec(_v);
@@ -27,19 +28,26 @@ void Semaphore::p() {
 void Semaphore::v() {
     finc(_v);
     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " .v() \n";
-    Thread::wake();
+    
+    wakeup();
     db<Semaphore>(TRC) << "v -> _v = " << _v << "\n"; 
 }
 
 // Funções pra threads
 // chama sleep da thread atual
 void Semaphore::sleep() {
+    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".sleep()\n"; 
+    Thread * to_sleep = Thread::running();
 
+    to_sleep->sleep(this);
 }
 
 // chama wake da thread atual
 void Semaphore::wakeup() {
-  
+
+   Thread * to_wake = _wait_queue.remove()->object();
+   db<Semaphore>(TRC) << "Thread: "<<to_wake->id() << "removida da fila de waiting";
+   to_wake->wake(this);
 }
 
 //acho que é no caso de destruir o semaforo

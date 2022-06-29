@@ -18,6 +18,7 @@ public:
 
     void p();
     void v();
+    Ready_Queue _wait_queue;
 private:
     // Atomic operations
     int finc(volatile int & number);
@@ -32,7 +33,6 @@ private:
     //DECLARAÇÃO DOS ATRIBUTOS DO SEMÁFORO
     //adicionar fila de threads  
     int _v{1};
-    Ready_Queue _wait_queue;
 };
 
 __END_API

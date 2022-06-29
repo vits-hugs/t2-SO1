@@ -162,31 +162,29 @@ void Thread::resume() {
 
 // talvez passar ponteiro para semaforo para ficar na fila dele
 // Fila de wait é global ou é própria do semaforo
-void Thread::sleep() {
-    /*
-    if (_running != &_main){
-        _running->_state = WAITING;
-        _ready.remove(&_running->_link);
-    int now = std::chrono::duration_cast<std::chrono::microseconds>
-    (std::chrono::high_resolution_clock::now().time_since_epoch()).count();
-    _running->_link.rank(now);
-    _wait_queue.insert(&_running->_link);
+void Thread::sleep(Semaphore * sem) {
+    if (_running->_state != WAITING) {
+        if (this != &_main){
+            this->_state = WAITING;
+            _ready.remove(&this->_link);
+        //int now = std::chrono::duration_cast<std::chrono::microseconds>
+        //(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
+        //this->_link.rank(now);
+        sem->_wait_queue.insert(&this->_link);
+        }
     }
     if (_running->_state == WAITING) yield();
-    */
 }
 
-void Thread::wake() {
-    /*db<Semaphore>(TRC) << "wake\n";
-    Thread * to_wake = Thread::_wait_queue.remove()->object();
-    db<Thread>(TRC) << "Thread: " << to_wake->_id << "wake\n";
-    if (to_wake->_state == WAITING){
-    to_wake->_state = READY;
-    _wait_queue.remove(&to_wake->_link);
-    _ready.insert(&to_wake->_link);
+void Thread::wake(Semaphore * sem) {
+    db<Semaphore>(TRC) << "wake\n";
+    db<Thread>(TRC) << "Thread: " << this->_id << "wake\n";
+    if (this->_state == WAITING){
+    this->_state = READY;
+    sem->_wait_queue.remove(&this->_link);
+    _ready.insert(&this->_link);
     }
     db<Thread>(WRN) << "Não há threads na fila de suspensos\n";
-    */
 
 }
 __END_API

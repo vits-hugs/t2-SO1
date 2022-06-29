@@ -5,6 +5,7 @@
 #include "traits.h"
 #include "debug.h"
 #include "list.h"
+#include "semaphore.h"
 #include <ctime> 
 #include <chrono>
 
@@ -104,9 +105,9 @@ public:
 
     void resume();
 
-    static void sleep();
+    void sleep(Semaphore * sem);
 
-    static void wake();
+    void wake(Semaphore * sem);
 
 
     Context* context(){
