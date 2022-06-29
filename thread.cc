@@ -55,7 +55,7 @@ Thread::~Thread(){
 
 
 void Thread::dispatcher() {
-    while (_ready.size() > 2) {
+    while (_ready.size() > 0) {
     //escolha a próxima
     
     Thread * next = _ready.remove()->object();
@@ -73,7 +73,7 @@ void Thread::dispatcher() {
 
     }
 
-    db<Thread>(TRC) << "Dispatcher sendo finalizada e indo pro main";
+    db<Thread>(TRC) << "Dispatcher sendo finalizada e indo pro main \n";
     _dispatcher._state = FINISHING;
     _ready.remove(&_dispatcher._link);
     Thread::switch_context(&_dispatcher,&_main);
@@ -104,7 +104,8 @@ void Thread::yield(){
     db<Thread>(TRC) <<  "chamando yield\n";
     
     Thread * prev = running();
-    Thread * next = _ready.remove()->object();
+    Thread * next = prev;
+    if (!_ready.empty()) {next= _ready.remove()->object();}
     
     int now = std::chrono::duration_cast<std::chrono::microseconds>
     (std::chrono::high_resolution_clock::now().time_since_epoch()).count();
