@@ -33,6 +33,9 @@ int Thread::switch_context(Thread * prev, Thread * next){
 
 void Thread::thread_exit(int exit_code){
     this->_state = FINISHING;
+    if (this->_sem_queues) {
+        this->_sem_queues.remove(this);
+    }
     db<Thread>(TRC) << "thread: "<<this->_id << "chamou exit()\n";
 
     if (!_suspend.empty()) _suspend.head()->object()->resume();
@@ -46,7 +49,7 @@ int Thread::id(){
 
 Thread::~Thread(){
     db<Thread>(TRC) << "Thread "<< _id << " sendo destruida\n";
-    thread_counter--;
+    // talvez deixar ou n o thread_counter--;
     _ready.remove(this);
     delete _context;
 
@@ -55,27 +58,31 @@ Thread::~Thread(){
 
 
 void Thread::dispatcher() {
-    while (_ready.size() > 0) {
+    while (thread_counter > 2) {
     //escolha a próxima
     
-    Thread * next = _ready.remove()->object();
-    
-   _dispatcher._state = READY;
+        Thread * next = _ready.remove()->object();
 
-   int now = (std::chrono::duration_cast<std::chrono::microseconds>
-   (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+       _dispatcher._state = READY;
 
-   _dispatcher._link.rank(now);
-   _ready.insert(&_dispatcher._link);
-   _running = next;
-   next->_state = RUNNING;
-   Thread::switch_context(&_dispatcher,next);
-
+       int now = (std::chrono::duration_cast<std::chrono::microseconds>
+       (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
+       _dispatcher._link.rank(now);
+        
+       _ready.insert(&_dispatcher._link);
+       _running = next;
+       next->_state = RUNNING;
+       Thread::switch_context(&_dispatcher,next);
+        if (next->_state == FINISHING) {
+            _ready.remove(&next->_link);
+            thread_counter --;
+        }
     }
 
     db<Thread>(TRC) << "Dispatcher sendo finalizada e indo pro main \n";
     _dispatcher._state = FINISHING;
     _ready.remove(&_dispatcher._link);
+    thread_counter --;
     Thread::switch_context(&_dispatcher,&_main);
 
     
@@ -93,7 +100,6 @@ void Thread::init(void (*main)(void *)){
     _running = &_main;
     _main._state = RUNNING;
 
-
     CPU::switch_context(&_main_context,_main.context());
     
 }
@@ -104,16 +110,18 @@ void Thread::yield(){
     db<Thread>(TRC) <<  "chamando yield\n";
     
     Thread * prev = running();
-    Thread * next = prev;
-    if (!_ready.empty()) {next= _ready.remove()->object();}
+    Thread * next = _ready.remove()->object();;
+    // não deveria precisar if (!_ready.empty()) {next= }
     
-    int now = std::chrono::duration_cast<std::chrono::microseconds>
-    (std::chrono::high_resolution_clock::now().time_since_epoch()).count();
+    
 
     if (prev->_state != FINISHING && prev->id() > 1) {
-
+        
         prev->_link.rank(now);
         prev->_state = READY;
+        
+    }
+    if (prev->id > 0) {
         _ready.insert(&prev->_link);
     }
     //db<Semaphore>(TRC) << "rodando: " << prev->_state << "\n";
@@ -162,29 +170,34 @@ void Thread::resume() {
 
 // talvez passar ponteiro para semaforo para ficar na fila dele
 // Fila de wait é global ou é própria do semaforo
-void Thread::sleep(Semaphore * sem) {
-    if (_running->_state != WAITING) {
-        if (this != &_main){
-            this->_state = WAITING;
-            _ready.remove(&this->_link);
-        //int now = std::chrono::duration_cast<std::chrono::microseconds>
-        //(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
-        //this->_link.rank(now);
-        sem->_wait_queue.insert(&this->_link);
-        }
-    }
-    if (_running->_state == WAITING) yield();
+void Thread::sleep(Ready_Queue * Fila_sem) {
+    Thread * run = running();      
+    run->_state = WAITING;
+    run->_sem_queues = Fila_sem;
+    Fila_sem->insert(&run->_link);
+    Thread * next = _ready.remove()->object();
+    next->_state = RUNNING;
+    
+    switch_context(run,next);
 }
 
-void Thread::wake(Semaphore * sem) {
-    db<Semaphore>(TRC) << "wake\n";
-    db<Thread>(TRC) << "Thread: " << this->_id << "wake\n";
-    if (this->_state == WAITING){
-    this->_state = READY;
-    sem->_wait_queue.remove(&this->_link);
-    _ready.insert(&this->_link);
-    }
-    db<Thread>(WRN) << "Não há threads na fila de suspensos\n";
+void Thread::wake(Ready_Queue * Fila_sem) {
+   if(!Fila_sem->empty()) {
+   Thread * to_wake = Fila_sem->remove()->object();
+   to_wake->_sem_queues = nullptr;
+   to_wake->_state = READY;
+   _ready.insert(&to_wake->_link);
+   }
+   yield();
+}
 
+void Thread::wakeupAll(Ready_Queue * Fila_sem) {
+   while (!Fila_sem->empty()) {
+   Thread * to_wake = Fila_sem->remove()->object();
+   to_wake->_sem_queues = nullptr;
+   to_wake->_state = READY;
+   _ready.insert(&to_wake->_link);
+   }
+   yield();
 }
 __END_API
