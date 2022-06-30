@@ -14,20 +14,22 @@ Semaphore::~Semaphore() {
 // Implementar como se fosse um mutex primeiro
 
 void Semaphore::p() {
-    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n"; 
-    while (_v == 0) {
-        Thread::sleep();
-        Thread::yield();
+    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n";
+  
+    int d = fdec(_v);
+    if (d < 1) {
+        sleep();    
     }
-    fdec(_v);
     db<Semaphore>(TRC) << "p -> _v = " << _v << "\n"; 
 
 }
 
 void Semaphore::v() {
-    finc(_v);
+    if (finc(_v) < 0) {
+        wake();
+    }
     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " .v() \n";
-    Thread::wake();
+    
     db<Semaphore>(TRC) << "v -> _v = " << _v << "\n"; 
 }
 
