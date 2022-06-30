@@ -109,7 +109,7 @@ public:
 
     static void wake(Ready_Queue * Fila_sem);
     
-    static void wakeupAll(Ready_Queue * Fila_sem);
+    static void wakeup_all(Ready_Queue * Fila_sem);
 
 
     Context* context(){

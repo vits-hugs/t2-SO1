@@ -25,8 +25,13 @@ int Thread::switch_context(Thread * prev, Thread * next){
     }
     
     if (prev != next){
-        CPU::switch_context(prev->context(),next->context());
+        db<Thread>(TRC) << "switch\n";
         prev->_state = READY;
+        //_running = next;
+        //next->_state = RUNNING;
+        CPU::switch_context(prev->context(),next->context());
+        db<Thread>(TRC) << "volta\n";
+   
     }
     return 0;
 }
@@ -34,7 +39,7 @@ int Thread::switch_context(Thread * prev, Thread * next){
 void Thread::thread_exit(int exit_code){
     this->_state = FINISHING;
     if (this->_sem_queues) {
-        this->_sem_queues.remove(this);
+        this->_sem_queues->remove(this);
     }
     db<Thread>(TRC) << "thread: "<<this->_id << "chamou exit()\n";
 
@@ -58,11 +63,12 @@ Thread::~Thread(){
 
 
 void Thread::dispatcher() {
+     db<Thread>(TRC) << "dispatcher\n";
     while (thread_counter > 2) {
     //escolha a próxima
     
         Thread * next = _ready.remove()->object();
-
+        db<Thread>(TRC) << "next="<<next << "\n";
        _dispatcher._state = READY;
 
        int now = (std::chrono::duration_cast<std::chrono::microseconds>
@@ -116,15 +122,17 @@ void Thread::yield(){
     
 
     if (prev->_state != FINISHING && prev->id() > 1) {
-        
+
+        int now = (std::chrono::duration_cast<std::chrono::microseconds>
+        (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
         prev->_link.rank(now);
         prev->_state = READY;
         
     }
-    if (prev->id > 0) {
+    if (prev->_id > 0) {
         _ready.insert(&prev->_link);
     }
-    //db<Semaphore>(TRC) << "rodando: " << prev->_state << "\n";
+    db<Semaphore>(TRC) << "rodando: " << prev->_state << "\n";
     _running = next;
 
     next->_state = RUNNING;
@@ -177,11 +185,12 @@ void Thread::sleep(Ready_Queue * Fila_sem) {
     Fila_sem->insert(&run->_link);
     Thread * next = _ready.remove()->object();
     next->_state = RUNNING;
-    
+    _running = next;
     switch_context(run,next);
 }
 
 void Thread::wake(Ready_Queue * Fila_sem) {
+    db<Semaphore>(TRC) << "wake\n";
    if(!Fila_sem->empty()) {
    Thread * to_wake = Fila_sem->remove()->object();
    to_wake->_sem_queues = nullptr;
@@ -191,12 +200,12 @@ void Thread::wake(Ready_Queue * Fila_sem) {
    yield();
 }
 
-void Thread::wakeupAll(Ready_Queue * Fila_sem) {
-   while (!Fila_sem->empty()) {
-   Thread * to_wake = Fila_sem->remove()->object();
-   to_wake->_sem_queues = nullptr;
-   to_wake->_state = READY;
-   _ready.insert(&to_wake->_link);
+void Thread::wakeup_all(Ready_Queue * Fila_sem) {
+    while (!Fila_sem->empty()) {
+    Thread * to_wake = Fila_sem->remove()->object();
+    to_wake->_sem_queues = nullptr;
+    to_wake->_state = READY;
+    _ready.insert(&to_wake->_link);
    }
    yield();
 }
