@@ -36,10 +36,8 @@ void Semaphore::v() {
 // Funções pra threads
 // chama sleep da thread atual
 void Semaphore::sleep() {
-    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".sleep()\n"; 
-    Thread * to_sleep = Thread::running();
-
-    to_sleep->sleep(this);
+    db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".sleep()\n";
+    Thread::sleep(/* passar fila */);
 }
 
 // chama wake da thread atual
@@ -47,11 +45,12 @@ void Semaphore::wakeup() {
 
    Thread * to_wake = _wait_queue.remove()->object();
    db<Semaphore>(TRC) << "Thread: "<<to_wake->id() << "removida da fila de waiting";
-   to_wake->wake(this);
+   Thread::wake(/* passar fila */);
 }
 
 //acho que é no caso de destruir o semaforo
 void Semaphore::wakeup_all() {
+    Thread::wakeup_all(/* passar fila*/);.
     // itera pela fila e tira da wake em todos
 }
 
