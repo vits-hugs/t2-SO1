@@ -75,14 +75,15 @@ void Thread::dispatcher() {
        (std::chrono::high_resolution_clock::now().time_since_epoch()).count());
        _dispatcher._link.rank(now);
         
+       
        _ready.insert(&_dispatcher._link);
        _running = next;
-       next->_state = RUNNING;
        Thread::switch_context(&_dispatcher,next);
         if (next->_state == FINISHING) {
             _ready.remove(&next->_link);
             thread_counter --;
         }
+       next->_state = RUNNING;
     }
 
     db<Thread>(TRC) << "Dispatcher sendo finalizada e indo pro main \n";
@@ -119,8 +120,7 @@ void Thread::yield(){
     Thread * next = _ready.remove()->object();;
     // não deveria precisar if (!_ready.empty()) {next= }
     
-    
-
+  
     if (prev->_state != FINISHING && prev->id() > 1) {
 
         int now = (std::chrono::duration_cast<std::chrono::microseconds>
@@ -129,7 +129,8 @@ void Thread::yield(){
         prev->_state = READY;
         
     }
-    if (prev->_id > 0) {
+    if (prev->_id > 0 && prev->_state != FINISHING) {
+        db<Thread>(TRC) << "Thread: " << prev->id() << "insert();\n";
         _ready.insert(&prev->_link);
     }
     db<Semaphore>(TRC) << "rodando: " << prev->_state << "\n";
@@ -147,6 +148,7 @@ void Thread::suspend() {
     if (this != &_main){
         _ready.remove(&this->_link);
     }
+    db<Thread>(TRC) << "Thread: " << this->id() << "suspendo;\n";
     _suspend.insert(&this->_link);
     if (_running == this){
         yield();
@@ -167,7 +169,8 @@ void Thread::resume() {
     if (this->_state == SUSPENDED){
     this->_state = READY;
     _suspend.remove(&this->_link);
-    
+
+    db<Thread>(TRC) << "Thread: " << this->id() << "insert();\n";
     _ready.insert(&this->_link);
     
     }
@@ -182,6 +185,7 @@ void Thread::sleep(Ready_Queue * Fila_sem) {
     Thread * run = running();      
     run->_state = WAITING;
     run->_sem_queues = Fila_sem;
+     db<Thread>(TRC) << "Thread: " << run->id() << "Fila_sem;\n";
     Fila_sem->insert(&run->_link);
     Thread * next = _ready.remove()->object();
     next->_state = RUNNING;
@@ -195,6 +199,7 @@ void Thread::wake(Ready_Queue * Fila_sem) {
    Thread * to_wake = Fila_sem->remove()->object();
    to_wake->_sem_queues = nullptr;
    to_wake->_state = READY;
+    db<Thread>(TRC) << "Thread: " << to_wake->id() << "insert();\n";
    _ready.insert(&to_wake->_link);
    }
    yield();
