@@ -16,8 +16,8 @@ Semaphore::~Semaphore() {
 void Semaphore::p() {
     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n"; 
    
-    int d = fdec(_v);
-    if (d < 1) {
+
+    if (fdec(_v) < 0) {
         sleep();
     }
     db<Semaphore>(TRC) << "p -> _v = " << _v << "\n"; 
@@ -27,7 +27,7 @@ void Semaphore::p() {
 void Semaphore::v() {
   
     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " .v() \n";
-    if (finc(_v) < 0) {
+    if (finc(_v) < 1) {
         wakeup();
     }
 
@@ -43,9 +43,6 @@ void Semaphore::sleep() {
 
 // chama wake da thread atual
 void Semaphore::wakeup() {
-
-   Thread * to_wake = _wait_queue.remove()->object();
-   db<Semaphore>(TRC) << "Thread: "<<to_wake->id() << "removida da fila de waiting";
    Thread::wake(&this->_wait_queue);
 }
 
