@@ -105,9 +105,11 @@ public:
 
     void resume();
 
-    void sleep(Semaphore * sem);
+    static void sleep(Ready_Queue * Fila_sem);
 
-    void wake(Semaphore * sem);
+    static void wake(Ready_Queue * Fila_sem);
+    
+    static void wakeupAll(Ready_Queue * Fila_sem);
 
 
     Context* context(){
@@ -126,6 +128,7 @@ private:
     static Ready_Queue _ready;
     static Ready_Queue _suspend; 
     Ready_Queue::Element _link;
+    Ready_Queue * _sem_queues;
     volatile State _state;
     int exit_code{0};
     /*
