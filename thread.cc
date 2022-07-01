@@ -26,7 +26,9 @@ int Thread::switch_context(Thread * prev, Thread * next){
     
     if (prev != next){
         db<Thread>(TRC) << "switch\n";
+        if (prev->_state != SUSPENDED) {
         prev->_state = READY;
+        }
         //_running = next;
         //next->_state = RUNNING;
         CPU::switch_context(prev->context(),next->context());
@@ -41,8 +43,9 @@ void Thread::thread_exit(int exit_code){
     if (this->_sem_queues) {
         this->_sem_queues->remove(this);
     }
-    db<Thread>(TRC) << "thread: "<<this->_id << "chamou exit()\n";
+    db<Thread>(TRC) << "thread: "<<this->_id << " chamou exit()\n";
 
+    
     if (!_suspend.empty()) _suspend.head()->object()->resume();
     
     Thread::yield();
@@ -166,7 +169,7 @@ int Thread::join() {
 
 void Thread::resume() {
     db<Thread>(TRC) << "Thread: " << this->_id << "saindo da fila de suspensos\n";
-    if (this->_state == SUSPENDED){
+    if (this->_state == SUSPENDED  /*|| this == &_main*/){
     this->_state = READY;
     _suspend.remove(&this->_link);
 
