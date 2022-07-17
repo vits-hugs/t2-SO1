@@ -17,7 +17,7 @@ void Semaphore::p() {
     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << ".p()\n"; 
    
 
-    if (fdec(_v) < 0) {
+    if (CPU::fdec(_v) < 0) {
         sleep();
     }
     db<Semaphore>(TRC) << "p -> _v = " << _v << "\n"; 
@@ -27,7 +27,7 @@ void Semaphore::p() {
 void Semaphore::v() {
   
     db<Semaphore>(TRC) << "thread: " << Thread::running()->id() << " .v() \n";
-    if (finc(_v) < 1) {
+    if (CPU::finc(_v) < 1) {
         wakeup();
     }
 
@@ -56,18 +56,14 @@ void Semaphore::wakeup_all() {
 // Fazer utilizando assembly prof deu os links
 // Incrementa
 int Semaphore::finc(volatile int & number) {
-    int i = 1;
-    __asm__ __volatile__ ( "lock ; xadd %0, %1;": "=r"(i) : "m"(number), "0" (i) : "memory");
-    return number;
+    return CPU::finc(number);
 }
 
 
 
 // Decrementa 
 int Semaphore::fdec(volatile int & number) {
-    int i = -1;
-    __asm__ __volatile__ ( "lock ; xadd %0, %1;": "=r"(i) : "m"(number), "0" (i) : "memory");
-    return number;
+    return CPU::fdec(number);
 }
 
 __END_API
